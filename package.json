@@ -1,12 +1,12 @@
 {
   "name": "@mggflow/msvc-auth",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Manage microservice authentication.",
   "main": "src/index.js",
   "scripts": {},
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mggflow/js-msvc-api.git"
+    "url": "git+https://github.com/mggflow/msvc-auth.js.git"
   },
   "author": "Pavel Eliseev <deusagnis@gmail.com>",
   "license": "MIT",
