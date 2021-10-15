@@ -11,7 +11,7 @@
   "author": "Pavel Eliseev <deusagnis@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/mggflow/js-msvc-auth/issues"
+    "url": "https://github.com/mggflow/msvc-auth.js/issues"
   },
-  "homepage": "https://github.com/mggflow/js-msvc-auth#readme"
+  "homepage": "https://github.com/mggflow/msvc-auth.js#readme"
 }
