@@ -98,6 +98,9 @@ class MsvcAuth{
     }
 
     static prepareParams(params, token){
+        if(params === null){
+            params = {}
+        }
         if(typeof params === 'object' && typeof params['token'] !== 'string'){
             params['token'] = token
         }
