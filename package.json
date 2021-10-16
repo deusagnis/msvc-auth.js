@@ -1,6 +1,6 @@
 {
   "name": "@mggflow/msvc-auth",
-  "version": "1.0.2",
+  "version": "1.0.1",
   "description": "Manage microservice authentication.",
   "main": "src/index.js",
   "scripts": {},
