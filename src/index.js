@@ -94,7 +94,7 @@ class MsvcAuth{
 
         if(token === false) return
 
-        msvcApi.params = this.prepareParams(msvcApi.params)
+        msvcApi.params = this.prepareParams(msvcApi.params,token)
     }
 
     static prepareParams(params, token){
