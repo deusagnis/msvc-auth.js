@@ -52,16 +52,22 @@ class MsvcAuth{
 
         if(response === false) return false
 
-        this.setUser(response.result,msvcApi['msvcName'])
+        this.setUser(response.result,serviceSettings['asName'])
 
         return response.result
     }
 
     static chooseSettings(msvcName){
         if(typeof this.services[msvcName] === 'object'){
-            return this.services[msvcName]
+            return {
+                ...this.services[msvcName],
+                asName: msvcName
+            }
         }else{
-            return this.services['default']
+            return {
+                ...this.services['default'],
+                asName: 'default'
+            }
         }
     }
 
