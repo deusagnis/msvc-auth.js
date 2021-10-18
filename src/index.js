@@ -75,7 +75,7 @@ class MsvcAuth{
 
     static detectSettingsToken(serviceSettings){
         if(serviceSettings.settings['token'] !== false){
-            return serviceSettings['token']
+            return serviceSettings.settings['token']
         }
 
         if(serviceSettings.settings['user'] === false){
