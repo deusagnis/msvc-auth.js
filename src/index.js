@@ -28,8 +28,10 @@ class MsvcAuth{
         }
     }
 
-    static setToken(token, msvcName='default'){
+    static setToken(token, msvcName='default',remember = true){
         this.services[msvcName]['token'] = token
+
+        if(remember) this.setTokenToLocalStorage(token,msvcName)
     }
 
     static setUser(user, msvcName='default'){
@@ -72,19 +74,38 @@ class MsvcAuth{
     }
 
     static detectSettingsToken(serviceSettings){
-        if(serviceSettings['token'] !== false){
+        if(serviceSettings.settings['token'] !== false){
             return serviceSettings['token']
         }
 
-        if(serviceSettings['user'] === false){
-            return false
+        if(serviceSettings.settings['user'] === false){
+            return this.getTokenFromLocalStorage(serviceSettings.asName)
         }
 
-        if(typeof serviceSettings['user']['access_token'] === 'string'){
-            return serviceSettings['user']['access_token']
+        if(typeof serviceSettings.settings['user']['access_token'] === 'string'){
+            return serviceSettings.settings['user']['access_token']
         }
 
         return false
+    }
+
+    static genLocalStorageTokenKey(msvcName){
+        return msvcName + '_'+'access_token'
+    }
+
+    static getTokenFromLocalStorage(msvcName){
+        const token = localStorage.getItem(this.genLocalStorageTokenKey(msvcName))
+        if(token === null) return false
+
+        return token
+    }
+
+    static setTokenToLocalStorage(token,msvcName='default'){
+        localStorage.setItem(this.genLocalStorageTokenKey(msvcName),token)
+    }
+
+    static removeTokenFromLocalStorage(msvcName='default'){
+        localStorage.removeItem(this.genLocalStorageTokenKey(msvcName))
     }
 
     static async prepareApi(msvcApi){
