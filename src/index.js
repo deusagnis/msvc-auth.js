@@ -46,9 +46,9 @@ class MsvcAuth{
 
     static async identify(msvcApi){
         const serviceSettings = this.chooseSettings(msvcApi['msvcName'])
-        serviceSettings['triedToIdentify']++
+        serviceSettings.settings['triedToIdentify']++
 
-        const response = await msvcApi[serviceSettings['authApiName']].getUser().send()
+        const response = await msvcApi[serviceSettings.settings['authApiName']].getUser().send()
 
         if(response === false) return false
 
@@ -60,12 +60,12 @@ class MsvcAuth{
     static chooseSettings(msvcName){
         if(typeof this.services[msvcName] === 'object'){
             return {
-                ...this.services[msvcName],
+                settings: this.services[msvcName],
                 asName: msvcName
             }
         }else{
             return {
-                ...this.services['default'],
+                settings: this.services['default'],
                 asName: 'default'
             }
         }
@@ -90,11 +90,11 @@ class MsvcAuth{
     static async prepareApi(msvcApi){
         const serviceSettings = this.chooseSettings(msvcApi['msvcName'])
 
-        if(serviceSettings['autoIdentify'] === true && serviceSettings['triedToIdentify'] === 0){
+        if(serviceSettings.settings['autoIdentify'] === true && serviceSettings.settings['triedToIdentify'] === 0){
             await this.identify(msvcApi)
         }
 
-        if(serviceSettings['prepareParams'] === false) return
+        if(serviceSettings.settings['prepareParams'] === false) return
 
         const token = this.detectSettingsToken(serviceSettings)
 
