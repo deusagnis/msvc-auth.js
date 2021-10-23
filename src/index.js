@@ -108,6 +108,24 @@ class MsvcAuth{
         localStorage.removeItem(this.genLocalStorageTokenKey(msvcName))
     }
 
+    static logout(msvcName='default'){
+        this.forgetToken(msvcName)
+        this.forgetUser(msvcName)
+    }
+
+    static forgetUser(msvcName='default'){
+        this.services[msvcName].user = false
+    }
+
+    static forgetToken(msvcName='default'){
+        this.removeTokenFromLocalStorage(msvcName)
+        this.removeTokenFromServices(msvcName)
+    }
+
+    static removeTokenFromServices(msvcName='default'){
+        this.services[msvcName].token = false
+    }
+
     static async prepareApi(msvcApi){
         const serviceSettings = this.chooseSettings(msvcApi['msvcName'])
 
