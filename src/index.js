@@ -1,4 +1,7 @@
 class MsvcAuth{
+    static tokenInHeaders = true
+    static tokenHeaderKey = 'Auth-Access-Token'
+
     static services = {
         default: {
             user: false,
@@ -139,7 +142,15 @@ class MsvcAuth{
 
         if(token === false) return
 
-        msvcApi.params = this.prepareParams(msvcApi.params,token)
+        if(this.tokenInHeaders){
+            this.setHeaderToken(msvcApi,token)
+        }else{
+            msvcApi.params = this.prepareParams(msvcApi.params,token)
+        }
+    }
+
+    static setHeaderToken(msvcApi,token){
+        msvcApi.fetchSettings.headers[this.tokenHeaderKey] = token
     }
 
     static prepareParams(params, token){
