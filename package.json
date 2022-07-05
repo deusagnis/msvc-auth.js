@@ -13,5 +13,8 @@
   "bugs": {
     "url": "https://github.com/mggflow/msvc-auth.js/issues"
   },
-  "homepage": "https://github.com/mggflow/msvc-auth.js#readme"
+  "homepage": "https://github.com/mggflow/msvc-auth.js#readme",
+  "dependencies": {
+    "@mggflow/msvc-api": "^1.1.4"
+  }
 }
